@@ -1,0 +1,151 @@
+1 #include<stdio.h>
+  2 #include<stdlib.h>
+  3 struct Node{
+  4     int data;
+  5     struct Node*next;
+  6 };
+  7 struct Node*top=NULL;
+  8 void push(int value){
+  9     struct Node*newNode=(struct Node*)malloc(sizeof(struct Node));
+ 10     if(newNode==NULL){
+ 11         printf("stack overflow\n");
+ 12         return;
+ 13     }
+ 14     newNode->data=value;
+ 15     newNode->next=top;
+ 16     top=newNode;
+ 17     printf("%d pushed into stack\n",value);
+ 18 }
+ 19     void pop(){
+ 20         struct Node*temp;
+ 21         if(top==NULL){
+ 22             printf("stack is empty!\n");
+ 23             return;
+ 24         }
+ 25         temp=top;
+ 26             printf("%d popped from stack\n",top->data);
+ 27             top=top->next;
+ 28             free(temp);
+ 29         }
+ 30         void display(){
+ 31             struct Node*temp;
+ 32             if(top==NULL){
+ 33                 printf("stack is empty!\n");
+ 34                 return;
+ 35             }
+ 36             temp=top;
+ 37         printf("stack elements:");
+ 38         while(temp!=NULL){
+ 39             printf("%d->",temp->data);
+ 40             temp=temp->next;
+ 41         }
+ 42         printf("NULL\n");
+ 43     }
+ 44     int main()
+ 45     {
+ 46         int choice ,value;
+ 47         while(1){
+ 48             printf("\n-- stack using linkedlist--\n");
+ 49             printf("1.push\n2.pop\n3.Display\n4.Exit\n");
+ 50             printf("Enter your choice:");
+ 51             scanf("%d",&choice);
+ 52             switch(choice){
+ 53                 case 1:
+ 54                     printf("enter value to push:");
+ 55                     scanf("%d",&value);
+ 56                     push(value);
+ 57                     break;
+ 58                 case 2:
+ 59                     pop();
+ 60                     break;
+ 61                 case 3:
+ 62                     display();
+ 63                     break;
+ 64                 case 4:
+ 65                     printf("existing.....\n");
+ 66                     exit(0);
+ 67                 default:
+ 68                     printf("invalid choice!\n");
+ 69             }
+ 70         }
+ 71         return 0;
+ 72     }
+
+
+
+
+
+OUTPUT
+
+
+
+
+-- stack using linkedlist--
+1.push
+2.pop
+3.Display
+4.Exit
+Enter your choice:1
+enter value to push:2
+2 pushed into stack
+
+-- stack using linkedlist--
+1.push
+2.pop
+3.Display
+4.Exit
+Enter your choice:1
+enter value to push:4
+4 pushed into stack
+
+-- stack using linkedlist--
+1.push
+2.pop
+3.Display
+4.Exit
+Enter your choice:1
+enter value to push:6
+6 pushed into stack
+
+-- stack using linkedlist--
+1.push
+2.pop
+3.Display
+4.Exit
+Enter your choice:1
+enter value to push:8
+8 pushed into stack
+
+-- stack using linkedlist--
+1.push
+2.pop
+3.Display
+4.Exit
+Enter your choice:3
+stack elements:8->6->4->2->NULL
+
+-- stack using linkedlist--
+1.push
+2.pop
+3.Display
+4.Exit
+Enter your choice:2
+8 popped from stack
+
+-- stack using linkedlist--
+1.push
+2.pop
+3.Display
+4.Exit
+Enter your choice:3
+stack elements:6->4->2->NULL
+
+-- stack using linkedlist--
+1.push
+2.pop
+3.Display
+4.Exit
+Enter your choice:4
+existing.....
+
+
