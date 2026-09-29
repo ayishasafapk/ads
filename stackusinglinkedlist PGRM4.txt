@@ -62,7 +62,7 @@
  62                     display();
  63                     break;
  64                 case 4:
- 65                     printf("existing.....\n");
+ 65                     printf("exiting.....\n");
  66                     exit(0);
  67                 default:
  68                     printf("invalid choice!\n");
