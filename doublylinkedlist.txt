@@ -1,0 +1,235 @@
+  #include <stdio.h>
+      #include <stdlib.h>
+  
+      struct node {
+          int data;
+          struct node *prev, *next;
+      };
+  
+     struct node *head = NULL;
+ 
+    void insertBeginning() {
+        struct node *newnode;
+        int value;
+ 
+        newnode = malloc(sizeof(struct node));
+ 
+        printf("Enter data: ");
+        scanf("%d", &value);
+ 
+        newnode->data = value;
+        newnode->prev = NULL;
+        newnode->next = head;
+         if (head != NULL)
+            head->prev = newnode;
+ 
+        head = newnode;
+    }
+ 
+    void insertEnd() {
+        struct node *newnode, *temp;
+        int value;
+ 
+        newnode = malloc(sizeof(struct node));
+ 
+        printf("Enter data: ");
+        scanf("%d", &value);
+ 
+        newnode->data = value;
+        newnode->next = NULL;
+        newnode->prev = NULL;
+ 
+        if (head == NULL) {
+            head = newnode;
+            return;
+        }
+ 
+        temp = head;
+ 
+        while (temp->next != NULL)
+            temp = temp->next;
+ 
+        temp->next = newnode;
+        newnode->prev = temp;
+    }
+ 
+    void displayForward() {
+        struct node *temp = head;
+ 
+        if (head == NULL) {
+            printf("List is empty\n");
+            return;
+        }
+ 
+        while (temp != NULL) {
+            printf("%d <-> ", temp->data);
+            temp = temp->next;
+        }
+ 
+        printf("NULL\n");
+    }
+ 
+    void deleteNode() {
+        struct node *temp = head;
+       int value;
+ 
+        if (head == NULL) {
+           printf("List is empty\n");
+            return;
+        }
+ 
+        printf("Enter value to delete: ");
+        scanf("%d", &value);
+ 
+        while (temp != NULL && temp->data != value)
+            temp = temp->next;
+ 
+        if (temp == NULL) {
+            printf("Node not found\n");
+            return;
+        }
+
+        if (temp->prev != NULL)
+            temp->prev->next = temp->next;
+        else
+            head = temp->next;
+ 
+        if (temp->next != NULL)
+           temp->next->prev = temp->prev;
+ 
+      free(temp);
+      printf("Node deleted\n");
+  }
+
+  void displayReverse() {
+      struct node *temp = head;
+
+      if (head == NULL) {
+          printf("List is empty\n");
+          return;
+      }
+
+      while (temp->next != NULL)
+          temp = temp->next;
+
+      while (temp != NULL) {
+          printf("%d <-> ", temp->data);
+          temp = temp->prev;
+      }
+
+      printf("NULL\n");
+  }
+
+  int main() {
+      int choice;
+
+      while (1) {
+          printf("\n1. Insert at beginning\n");
+          printf("2. Insert at end\n");
+          printf("3. Display forward\n");
+          printf("4. Delete a node\n");
+          printf("5. Display reverse\n");
+          printf("6. Exit\n");
+          printf("Enter choice: ");
+          scanf("%d", &choice);
+
+          switch (choice) {
+              case 1:
+                  insertBeginning();
+                  break;
+              case 2:
+                  insertEnd();
+                  break;
+              case 3:
+                  displayForward();
+                  break;
+              case 4:
+                  deleteNode();
+                  break;
+              case 5:
+                  displayReverse();
+                  break;
+              case 6:
+                  return 0;
+              default:
+                  printf("Invalid choice\n");
+          }
+      }
+  }
+
+
+
+OUTPUT
+
+
+1. Insert at beginning
+2. Insert at end
+3. Display forward
+4. Delete a node
+5. Display reverse
+6. Exit
+Enter choice: 1
+Enter data: 10
+
+1. Insert at beginning
+2. Insert at end
+3. Display forward
+4. Delete a node
+5. Display reverse
+6. Exit
+Enter choice: 2
+Enter data: 60
+
+1. Insert at beginning
+2. Insert at end
+3. Display forward
+4. Delete a node
+5. Display reverse
+6. Exit
+Enter choice: 1
+Enter data: 30
+
+1. Insert at beginning
+2. Insert at end
+3. Display forward
+4. Delete a node
+5. Display reverse
+6. Exit
+Enter choice: 1
+Enter data: 45
+
+1. Insert at beginning
+2. Insert at end
+3. Display forward
+4. Delete a node
+5. Display reverse
+6. Exit
+Enter choice: 3
+45 <-> 30 <-> 10 <-> 60 <-> NULL
+
+1. Insert at beginning
+2. Insert at end
+3. Display forward
+4. Delete a node
+5. Display reverse
+6. Exit
+Enter choice: 4
+Enter value to delete: 10
+Node deleted
+
+1. Insert at beginning
+2. Insert at end
+3. Display forward
+4. Delete a node
+5. Display reverse
+6. Exit
+Enter choice: 5
+60 <-> 30 <-> 45 <-> NULL
+
+1. Insert at beginning
+2. Insert at end
+3. Display forward
+4. Delete a node
+5. Display reverse
+6. Exit
+Enter choice: 6
